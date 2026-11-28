@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Merchant extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'brand_name',
+        'category',
+        'area',
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function campaigns()
+    {
+        return $this->hasMany(Campaign::class);
+    }
+
+    public function cashiers()
+    {
+        return $this->hasMany(Cashier::class);
+    }
+}
